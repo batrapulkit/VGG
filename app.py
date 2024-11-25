@@ -14,6 +14,15 @@ def load_vgg_model():
 
 model = load_vgg_model()
 
+# Define class labels
+label_mapping = {
+    0: 'Drink',
+    1: 'Food',
+    2: 'Inside',
+    3: 'Menu',
+    4: 'Outside'
+}
+
 # Upload image
 uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
 
@@ -36,12 +45,11 @@ if uploaded_file is not None:
     
     # Predict
     prediction = model.predict(processed_image)
-    st.write("Prediction:", prediction)
-
-    # Optional: Map predictions to class labels
-    # Example:
-    # labels = ["Class A", "Class B", "Class C"]
-    # predicted_label = labels[np.argmax(prediction)]
-    # st.write(f"Predicted Label: {predicted_label}")
+    predicted_class = np.argmax(prediction)  # Get index of highest probability
+    predicted_label = label_mapping[predicted_class]  # Map index to class label
+    
+    # Display results
+    st.write(f"Predicted Label: **{predicted_label}**")
+    st.write(f"Confidence Score: **{prediction[0][predicted_class]:.2f}**")  # Display confidence score
 else:
     st.write("Upload an image to get started.")
