@@ -1,3 +1,8 @@
-tensorflow
-streamlit
-torch
+# TensorFlow (for deep learning tasks)
+tensorflow>=2.12.0  # Adjust version if needed
+
+# Streamlit (for web app interface)
+streamlit>=1.20.0  # Adjust version as necessary
+
+# PyTorch (for deep learning with PyTorch)
+torch>=2.0.0  # Adjust version if needed
